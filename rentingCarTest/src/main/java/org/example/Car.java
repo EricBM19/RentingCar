@@ -79,6 +79,11 @@ public class Car
         this.price = price;
     }
 
+    public int carAge()
+    {
+        return 2025 - this.year;
+    }
+
     @Override
     public String toString()
     {
