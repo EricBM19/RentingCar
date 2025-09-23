@@ -27,7 +27,7 @@ public class RentingCarTests
         System.out.println(cars.get(0));
     }
 
-    public static void CreateFakeCarList()
+    public static ArrayList CreateFakeCarList()
     {
         ArrayList<Car> carList = new ArrayList<Car>();
         Faker faker = new Faker();
@@ -37,21 +37,13 @@ public class RentingCarTests
             Car myCar = new Car();
             myCar.setId(String.valueOf(i));
             myCar.setBrand(faker.company().name());
-            myCar.setModel(faker.ancient().hero());
+            myCar.setModel(faker.ancient().primordial());
             myCar.setPlate(faker.bothify("???-####"));
             myCar.setYear(faker.number().numberBetween(1990, 2024));
             myCar.setPrice(faker.number().randomDouble(2, 20, 500));
             carList.add(myCar);
         }
 
-        //for (int i = 0; i < carList.size(); i++)
-        //{
-        // System.out.println(carList.get(i));
-        //}
-
-        for (Car car : carList)
-        {
-            System.out.println(car);
-        }
+        return carList;
     }
 }
