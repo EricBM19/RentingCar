@@ -80,7 +80,8 @@ public class Client
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Client{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
