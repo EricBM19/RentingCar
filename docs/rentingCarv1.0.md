@@ -9,8 +9,8 @@
 ### Class Car
 
 ```java
-public class Car
-{
+public class Car {
+
     private String id;
     private String plate;
     private String brand;
@@ -25,8 +25,8 @@ public class Car
 ### Class Client
 
 ```java
-public class Client
-{
+public class Client {
+
     private String id;
     private String name;
     private String lastName;
@@ -41,19 +41,35 @@ public class Client
 ### Class Booking
 
 ```java
-public class Booking
-{
+public class Booking {
+
     private String id;
     private Car car;
     private int days;
     private double price;
     private boolean isActive;
 
-    //Constructor, getters & setters and toString
+    //Constructor, getters & setters and toString
 }
 ```
 
----
+### Class DataStore
+
+```java
+public class DataStore {
+    
+    private String id;
+    private String label;
+    private static List<Car> cars;
+    private static List<Client> clients;
+    private static List<Booking> bookings;
+    private boolean isActive;
+    private long creationDate;
+    private long lastModification;
+
+    //Constructor, getters & setters
+}
+```
 
 ## UML
 
@@ -63,33 +79,45 @@ public class Booking
 classDiagram
 direction TB
     class Car {
-        +String id
-        +String plate
-        +String brand
-        +String model
-        +int year
-        double price
+	    +String id
+	    +String plate
+	    +String brand
+	    +String model
+	    +int year
+	    double price
     }
-
     class Client {
-        +String id
-        +String name
-        +String lastName
-        +String address
-        +String email
-        +boolean premium
+	    +String id
+	    +String name
+	    +String lastName
+	    +String address
+	    +String email
+	    +boolean premium
     }
-
     class Booking {
-        +String id
-        +Car car
-        +int days
-        +double price
-        +boolean isActive
+	    +String id
+	    +Car car
+	    +int days
+	    +double price
+	    +boolean isActive
     }
-
+	class DataStore {
+	    +String id
+	    +String label
+	    +List cars
+	    +List clients
+		+List bookings
+		+long creationDate
+	    +long lastModification
+    }
+	class App
+	DataStore ..o App
+	DataStore --* Client
+	DataStore --* Booking
+	DataStore --* Car
     Client --* Booking
     Car --* Booking
+
 ```
 
 ## Tech Stack
@@ -101,8 +129,6 @@ direction TB
 - Java 21
 
 - Maven Project: maven-archetype-quickstart
-
-
 
 ## POM.XML
 
@@ -140,5 +166,4 @@ direction TB
       </dependency>
   </dependencies>
 </project>
-
 ```

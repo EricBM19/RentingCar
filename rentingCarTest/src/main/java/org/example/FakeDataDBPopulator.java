@@ -1,5 +1,7 @@
 package org.example;
 
+import com.github.javafaker.Faker;
+
 public class FakeDataDBPopulator {
 
     public static void populateDBByCars (DataStore myDataStore) {

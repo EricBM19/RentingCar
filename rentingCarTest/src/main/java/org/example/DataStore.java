@@ -2,8 +2,8 @@ package org.example;
 
 import java.util.List;
 
-public class DataStore
-{
+public class DataStore {
+
     private String id;
     private String label;
     private static List<Car> cars;
