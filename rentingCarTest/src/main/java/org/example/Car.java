@@ -18,9 +18,7 @@ public class Car {
         this.price = price;
     }
 
-    public Car() {
-
-    }
+    public Car() {}
 
     public String getId() {
         return id;

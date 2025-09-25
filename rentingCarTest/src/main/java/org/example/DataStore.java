@@ -13,13 +13,10 @@ public class DataStore
     private long creationDate;
     private long lastModification;
 
-    public DataStore()
-    {
-
+    public DataStore() {
     }
 
-    public DataStore(String id, String label, List<Car> cars, List<Client> clients, List<Booking> bookings, boolean isActive, long creationDate, long lastModification)
-    {
+    public DataStore(String id, String label, List<Car> cars, List<Client> clients, List<Booking> bookings, boolean isActive, long creationDate, long lastModification) {
         this.id = id;
         this.label = label;
         this.cars = cars;
