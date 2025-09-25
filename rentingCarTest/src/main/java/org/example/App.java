@@ -1,17 +1,14 @@
 package org.example;
 
-import com.github.javafaker.Faker;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App
 {
     static Scanner sc = new Scanner(System.in);
-    static ArrayList<Car> rentingCarList = RentingCarTests.CreateFakeCarList();
+    private final static ArrayList<Car> rentingCarList = RentingCarTests.createFakeCarList();
 
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) {
         System.out.println( "Starting code..." );
 
         mainMenu();
@@ -19,10 +16,9 @@ public class App
         System.out.println("Finished!");
     }
 
-    public static void mainMenu()
-    {
-        while (true)
-        {
+    public static void mainMenu() {
+
+        while (true) {
             System.out.println("Choose an option:");
             System.out.println("1.Tests");
             System.out.println("2.List cars");
@@ -60,8 +56,7 @@ public class App
         }
     }
 
-    public static void testTest()
-    {
+    public static void testTest() {
         System.out.println("Choose an option:");
         System.out.println("1.Test a car");
         System.out.println("2.Test a client");
@@ -82,7 +77,7 @@ public class App
         }
         else if (testOption == 3)
         {
-            RentingCarTests.TestArrayList();
+            RentingCarTests.testArrayList();
             mainMenu();
         }
         else if (testOption == 0)
@@ -96,8 +91,7 @@ public class App
         }
     }
 
-    public static void listCars()
-    {
+    public static void listCars() {
         for (int i = 0; i < rentingCarList.size(); i++)
         {
             System.out.println(rentingCarList.get(i));
@@ -105,8 +99,8 @@ public class App
         mainMenu();
     }
 
-    public static void makeBooking()
-    {
+    public static void makeBooking() {
+
         System.out.println("Select a car by its ID:");
         int carId = sc.nextInt();
         System.out.println(rentingCarList.get(carId));

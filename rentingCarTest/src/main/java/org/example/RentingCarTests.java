@@ -1,34 +1,33 @@
 package org.example;
 
 import com.github.javafaker.Faker;
-
 import java.util.ArrayList;
 
 public class RentingCarTests
 {
-    public static void testCar ()
-    {
+    public static void testCar () {
+
         System.out.println("Printing car info...");
         Car bmw001 = new Car("1", "4759N", "BMW", "M3", 2022, 100.0);
         System.out.println(bmw001);
     }
 
-    public static void testClient ()
-    {
+    public static void testClient () {
+
         System.out.println("Printing client info...");
         Client client001 = new Client("1", "John", "Doe", "123 Main St", "jdoe@gmail.com", true);
         System.out.println(client001);
     }
 
-    public static void TestArrayList()
-    {
+    public static void testArrayList() {
+
         ArrayList<Car> cars = new ArrayList<Car>();
         cars.add(new Car("1", "4759N", "BMW", "M3", 2022, 100.0));
         System.out.println(cars.get(0));
     }
 
-    public static ArrayList CreateFakeCarList()
-    {
+    public static ArrayList createFakeCarList() {
+
         ArrayList<Car> carList = new ArrayList<Car>();
         Faker faker = new Faker();
 
