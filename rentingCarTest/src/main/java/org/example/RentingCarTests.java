@@ -79,10 +79,10 @@ public class RentingCarTests
         myDataStoreTest.getCars().add(myCar);
         myDataStoreTest.getCars().add(myCar2);
 
-        CarManagement.printCarList(myDataStoreTest.getCars());
+        CarManager.printCarList(myDataStoreTest.getCars());
 
         myDataStoreTest.getCars().get(0).setPlate("1111111");
 
-        CarManagement.printCarList(myDataStoreTest.getCars());
+        CarManager.printCarList(myDataStoreTest.getCars());
     }
 }

@@ -1,8 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class App
 {
     public static void main( String[] args ) {
@@ -15,10 +12,12 @@ public class App
         myDataStore.setCreationDate(epoch);
         myDataStore.setLastModification(epoch);
 
+        // What? populate DB with fake data
+        // How? with a static method we add fake data to the list
+        // Why? For what? We need data to init out app
         FakeDataDBPopulator.populateDBByCars(myDataStore);
 
-        //RentingCarTests.createFakeCarList();
-        //RentingCarTests.myDataStoreTest();
+        CarManager.printCarList(myDataStore.getCars());
 
         System.out.println("Finished!");
     }

@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.List;
 
-public class CarManagement {
+public class CarManager {
 
     public static void printCarList (List<Car> cars) {
 

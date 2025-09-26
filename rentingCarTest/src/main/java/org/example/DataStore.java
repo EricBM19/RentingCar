@@ -1,14 +1,15 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataStore {
 
     private String id;
     private String label;
-    private static List<Car> cars;
-    private static List<Client> clients;
-    private static List<Booking> bookings;
+    private static List<Car> cars = new ArrayList<>();
+    private static List<Client> clients = new ArrayList<>();
+    private static List<Booking> bookings = new ArrayList<>();
     private boolean isActive;
     private long creationDate;
     private long lastModification;
