@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.controller.MainDispatcher;
+import org.example.dataStore.DataStore;
+import org.example.utilities.FakeDataDBPopulator;
+
 public class App
 {
     public static void main( String[] args ) {
@@ -17,7 +21,9 @@ public class App
         // Why? For what? We need data to init out app
         FakeDataDBPopulator.populateDBByCars(myDataStore);
 
-        CarManager.printCarList(myDataStore.getCars());
+        // CarManager.printCarList(myDataStore.getCars());
+
+        MainDispatcher.runner(myDataStore);
 
         System.out.println("Finished!");
     }

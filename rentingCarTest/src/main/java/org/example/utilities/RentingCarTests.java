@@ -1,6 +1,11 @@
-package org.example;
+package org.example.utilities;
 
 import com.github.javafaker.Faker;
+import org.example.managers.CarManager;
+import org.example.dataStore.DataStore;
+import org.example.model.Car;
+import org.example.model.Client;
+
 import java.util.ArrayList;
 
 public class RentingCarTests

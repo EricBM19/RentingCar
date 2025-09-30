@@ -1,6 +1,8 @@
-package org.example;
+package org.example.utilities;
 
 import com.github.javafaker.Faker;
+import org.example.dataStore.DataStore;
+import org.example.model.Car;
 
 public class FakeDataDBPopulator {
 
