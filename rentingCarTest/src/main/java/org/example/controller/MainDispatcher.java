@@ -13,10 +13,11 @@ public class MainDispatcher {
     public static void runner (DataStore myDataStore) {
 
         Scanner sc = new Scanner(System.in);
+        boolean userLoggedIn = false;
 
         while (true)
         {
-            MainMenuView.showMainMenu();
+            MainMenuView.showMainMenu(userLoggedIn);
             String option = Utilities.ask(sc, "Please select an option: ");
 
             if (option.equals("0")) {

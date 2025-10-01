@@ -8,6 +8,7 @@ public class Client
     private String address;
     private String email;
     private boolean premium;
+    private boolean isLoggedIn;
 
     public Client(String id, String name, String lastName, String address, String email, boolean premium) {
         this.id = id;
@@ -16,7 +17,10 @@ public class Client
         this.address = address;
         this.email = email;
         this.premium = premium;
+        this.isLoggedIn = false;
     }
+
+    public Client() {}
 
     public String getId() {
         return id;
@@ -66,6 +70,14 @@ public class Client
         this.premium = premium;
     }
 
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -75,6 +87,7 @@ public class Client
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", premium=" + premium +
+                ", isLoggedIn=" + isLoggedIn +
                 '}';
     }
 }

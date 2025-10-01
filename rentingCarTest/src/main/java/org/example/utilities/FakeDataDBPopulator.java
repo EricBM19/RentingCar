@@ -3,6 +3,7 @@ package org.example.utilities;
 import com.github.javafaker.Faker;
 import org.example.dataStore.DataStore;
 import org.example.model.Car;
+import org.example.model.Client;
 
 public class FakeDataDBPopulator {
 
@@ -18,8 +19,7 @@ public class FakeDataDBPopulator {
 
         Faker faker = new Faker();
 
-        for (int i = 0; i < 100; i++)
-        {
+        for (int i = 0; i < 100; i++) {
             Car myCar = new Car();
             myCar.setId(String.valueOf(faker.number().randomNumber()));
             myCar.setBrand(faker.company().name());
@@ -30,6 +30,23 @@ public class FakeDataDBPopulator {
 
             // add fake car to the DB list
             myDataStore.getCars().add(myCar);
+        }
+    }
+
+    public static void populateDBByClients (DataStore myDataStore) {
+
+        Faker faker = new Faker();
+
+        for (int i = 0; i < 100; i++) {
+            Client myClient = new Client();
+            myClient.setId(String.valueOf(faker.number().randomNumber()));
+            myClient.setName(faker.name().firstName());
+            myClient.setLastName(faker.name().lastName());
+            myClient.setAddress(faker.address().fullAddress());
+            myClient.setEmail(faker.internet().emailAddress());
+            myClient.setPremium(faker.bool().bool());
+
+            myDataStore.getClients().add(myClient);
         }
     }
 }

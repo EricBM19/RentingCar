@@ -21,7 +21,7 @@ public class App
         // Why? For what? We need data to init out app
         FakeDataDBPopulator.populateDBByCars(myDataStore);
 
-        // CarManager.printCarList(myDataStore.getCars());
+        FakeDataDBPopulator.populateDBByClients(myDataStore);
 
         MainDispatcher.runner(myDataStore);
 
