@@ -38,7 +38,7 @@ public class MainDispatcher {
                    System.out.println("You need to be logged in to rent a car.");
                 }
                else {
-                   BookingManager.createBooking(myDataStore);
+                   BookingManager.createBooking(myDataStore, sc);
                }
             }
             else {

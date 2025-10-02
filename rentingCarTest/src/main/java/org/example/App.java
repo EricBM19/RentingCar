@@ -25,6 +25,8 @@ public class App
 
         FakeDataDBPopulator.populateDBByClients(myDataStore);
 
+        // Let's create a supper hard coded client
+
         Client loggedClient;
         loggedClient = ClientManager.logingClient();
         myDataStore.setLoggedClient(loggedClient);

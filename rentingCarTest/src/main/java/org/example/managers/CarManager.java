@@ -12,8 +12,10 @@ public class CarManager {
         System.out.println("---------------");
         System.out.println("Size DB: " + cars.size());
 
+        int index = 1;
         for (Car car: cars) {
-            System.out.println(car);
+            System.out.println("\t" + index + ". " + car);
+            index++;
         }
 
         System.out.println("\n");

@@ -4,16 +4,20 @@ public class Booking
 {
     private String id;
     private Car car;
+    private Client client;
     private int days;
     private double price;
     private boolean isActive;
 
-    public Booking(String id, Car car, int days) {
+    public Booking(String id, Car car, int days, double price, boolean isActive) {
         this.id = id;
         this.car = car;
         this.days = days;
-        this.price = car.getPrice() * days;
-        this.isActive = true;
+        this.price = price;
+        this.isActive = isActive;
+    }
+
+    public Booking() {
     }
 
     public String getId() {
@@ -54,6 +58,14 @@ public class Booking
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
