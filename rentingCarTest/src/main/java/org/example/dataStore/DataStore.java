@@ -17,6 +17,7 @@ public class DataStore {
     private boolean isActive;
     private long creationDate;
     private long lastModification;
+    private Client loggedClient;
 
     public DataStore() {
     }
@@ -30,6 +31,7 @@ public class DataStore {
         this.isActive = true;
         this.creationDate = creationDate;
         this.lastModification = lastModification;
+        this.loggedClient = null;
     }
 
     public String getId() {
@@ -82,5 +84,13 @@ public class DataStore {
 
     public void setLastModification(long lastModification) {
         this.lastModification = lastModification;
+    }
+
+    public Client getLoggedClient() {
+        return loggedClient;
+    }
+
+    public void setLoggedClient(Client loggedClient) {
+        this.loggedClient = loggedClient;
     }
 }

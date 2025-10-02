@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.controller.MainDispatcher;
 import org.example.dataStore.DataStore;
+import org.example.managers.ClientManager;
+import org.example.model.Client;
 import org.example.utilities.FakeDataDBPopulator;
 
 public class App
@@ -22,6 +24,10 @@ public class App
         FakeDataDBPopulator.populateDBByCars(myDataStore);
 
         FakeDataDBPopulator.populateDBByClients(myDataStore);
+
+        Client loggedClient;
+        loggedClient = ClientManager.logingClient();
+        myDataStore.setLoggedClient(loggedClient);
 
         MainDispatcher.runner(myDataStore);
 

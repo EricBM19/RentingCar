@@ -17,4 +17,17 @@ public class ClientManager {
 
         System.out.println("\n");
     }
+
+    public static Client logingClient () {
+
+        // to do: implement view, where? / views
+        // to do: business logic: check if client exist
+
+        Client hardCodedClient = new Client();
+        hardCodedClient.setId("1");
+        hardCodedClient.setName("John");
+        hardCodedClient.setEmail("johndoe@gmail.com");
+
+        return hardCodedClient;
+    }
 }
