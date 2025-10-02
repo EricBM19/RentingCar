@@ -8,8 +8,7 @@ public class Booking
     private double price;
     private boolean isActive;
 
-    public Booking(String id, Car car, int days)
-    {
+    public Booking(String id, Car car, int days) {
         this.id = id;
         this.car = car;
         this.days = days;
@@ -17,59 +16,48 @@ public class Booking
         this.isActive = true;
     }
 
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Car getCar()
-    {
+    public Car getCar() {
         return car;
     }
 
-    public void setCar(Car car)
-    {
+    public void setCar(Car car) {
         this.car = car;
     }
 
-    public int getDays()
-    {
+    public int getDays() {
         return days;
     }
 
-    public void setDays(int days)
-    {
+    public void setDays(int days) {
         this.days = days;
     }
 
-    public double getPrice()
-    {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price)
-    {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public boolean isActive()
-    {
+    public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active)
-    {
+    public void setActive(boolean active) {
         isActive = active;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Booking{" +
                 "id='" + id + '\'' +
                 ", car=" + car +
