@@ -43,10 +43,21 @@ public class FakeDataDBPopulator {
             myClient.setName(faker.name().firstName());
             myClient.setLastName(faker.name().lastName());
             myClient.setAddress(faker.address().fullAddress());
-            myClient.setEmail(faker.internet().emailAddress());
+            myClient.setEmail(myClient.getName().toLowerCase() + "@gmail.com");
             myClient.setPremium(faker.bool().bool());
+            myClient.setPassword(faker.internet().password());
 
             myDataStore.getClients().add(myClient);
         }
+
+        Client hardCodedClient = new Client();
+        hardCodedClient.setId("1");
+        hardCodedClient.setName("John");
+        hardCodedClient.setLastName("Doe");
+        hardCodedClient.setAddress("123 Main St, Anytown, USA");
+        hardCodedClient.setEmail("john@gmail.com");
+        hardCodedClient.setPremium(true);
+        hardCodedClient.setPassword("1234");
+        myDataStore.getClients().add(hardCodedClient);
     }
 }

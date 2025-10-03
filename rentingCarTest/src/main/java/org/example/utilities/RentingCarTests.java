@@ -19,9 +19,6 @@ public class RentingCarTests
 
     public static void testClient () {
 
-        System.out.println("Printing client info...");
-        Client client001 = new Client("1", "John", "Doe", "123 Main St", "jdoe@gmail.com", true);
-        System.out.println(client001);
     }
 
     public static void testArrayList() {

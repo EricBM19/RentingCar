@@ -8,14 +8,16 @@ public class Client
     private String address;
     private String email;
     private boolean premium;
+    private String password;
 
-    public Client(String id, String name, String lastName, String address, String email, boolean premium) {
+    public Client(String id, String name, String lastName, String address, String email, boolean premium, String password) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.address = address;
         this.email = email;
         this.premium = premium;
+        this.password = password;
     }
 
     public Client() {}
@@ -68,6 +70,14 @@ public class Client
         this.premium = premium;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -77,6 +87,7 @@ public class Client
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", premium=" + premium +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,11 @@
 package org.example.managers;
+import org.example.dataStore.DataStore;
 import org.example.model.Client;
+import org.example.model.MinimalClient;
+import org.example.views.LoginView;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ClientManager {
 
@@ -18,16 +22,37 @@ public class ClientManager {
         System.out.println("\n");
     }
 
-    public static Client logingClient () {
+    public static Client loginClient(DataStore myDataStore, Scanner sc) {
 
-        // to do: implement view, where? / views
-        // to do: business logic: check if client exist
+        // Invoke view to get minimal client
+        MinimalClient minimalClient = LoginView.showLoginView(sc);
+        // Validate minimal client
+        Client validatedClient = validateLogin(minimalClient, myDataStore);
 
-        Client hardCodedClient = new Client();
-        hardCodedClient.setId("1");
-        hardCodedClient.setName("John");
-        hardCodedClient.setEmail("johndoe@gmail.com");
+        if (validatedClient == null) {
+            System.out.println("Login failed, invalid email or password.");
+        } else {
+            System.out.println("Login successful, welcome " + validatedClient.getName() + "!");
+            myDataStore.setLoggedClient(validatedClient);
+            return validatedClient;
+        }
 
-        return hardCodedClient;
+
+
+        return null;
+    }
+
+    public static Client validateLogin (MinimalClient minimalClient, DataStore myDataStore) {
+
+        List <Client> clients = myDataStore.getClients();
+
+        for (Client client : clients) {
+            if (client.getEmail().equals(minimalClient.getEmail()) && client.getPassword().equals(minimalClient.getPassword())) {
+                return client;
+            }
+        }
+
+
+        return null;
     }
 }

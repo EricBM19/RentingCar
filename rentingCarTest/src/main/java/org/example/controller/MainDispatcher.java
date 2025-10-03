@@ -3,6 +3,7 @@ package org.example.controller;
 import org.example.dataStore.DataStore;
 import org.example.managers.BookingManager;
 import org.example.managers.CarManager;
+import org.example.managers.ClientManager;
 import org.example.utilities.RentingCarTests;
 import org.example.utilities.Utilities;
 import org.example.views.MainMenuView;
@@ -30,7 +31,7 @@ public class MainDispatcher {
                 CarManager.printCarList(myDataStore.getCars());
             }
             else if (option.equals("3")) {
-                System.out.println("Not implemented yet");
+                ClientManager.loginClient(myDataStore, sc);
             }
             else if (option.equals("4")) {
 
