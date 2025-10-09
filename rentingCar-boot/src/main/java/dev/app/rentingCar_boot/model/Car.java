@@ -1,10 +1,11 @@
 package dev.app.rentingCar_boot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.Random;
 
 @Entity
 public class Car {
+
     @Id
     private String id;
     private String plate;
@@ -13,16 +14,24 @@ public class Car {
     private int carYear;
     private double price;
 
-    public Car(String id, String plate, String brand, String model, int carYear, double price) {
-        this.id = id;
+    public String generateFourDigitUuid () {
+        Random random = new Random();
+        int uuid = 1000 + random.nextInt(9000);
+        return String.valueOf(uuid);
+    }
+
+    public Car() {
+        this.id = generateFourDigitUuid();
+    }
+
+    public Car(String plate, String brand, String model, int carYear, double price) {
+        this.id = generateFourDigitUuid();
         this.plate = plate;
         this.brand = brand;
         this.model = model;
         this.carYear = carYear;
         this.price = price;
     }
-
-    public Car() {}
 
     public String getId() {
         return id;

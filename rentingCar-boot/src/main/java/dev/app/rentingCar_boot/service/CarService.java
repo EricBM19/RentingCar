@@ -31,7 +31,7 @@ public class CarService {
         if (foundCar.isEmpty()) System.out.println("Car not found");
         else System.out.println("Car found: " + foundCar);
 
-        return null;
+        return foundCar;
     }
 
     public void deleteCarById(String id) {
