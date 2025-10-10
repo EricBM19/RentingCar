@@ -33,27 +33,27 @@ public class CarController {
     }
 
     @GetMapping("/cars/generate")
-    public String generateCars(@RequestParam int quantity) {
-        List <Car> generatedCars = new ArrayList<>();
-        Random random = new Random();
-
-        String [] brands = {"Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Hyundai"};
-        String [] models = {"Sedan", "SUV", "Hatchback", "Convertible", "Coupe", "Wagon", "Pickup Truck", "Minivan", "Crossover", "Roadster"};
-
-        for (int i = 0; i < quantity; i++) {
-            String brand = brands[random.nextInt(brands.length)];
-            String model = models[random.nextInt(models.length)];
-            String plate = generateRandomPlate(random);
-            int year = random.nextInt(2000, 2024);
-            double price = 50.0 + (random.nextDouble()* 450.0);
-
-            Car car = new Car(brand, model, plate, year, price);
-            generatedCars.add(car);
-            carRepository.save(car);
-        }
-
-        return "cars";
-    }
+//    public String generateCars(@RequestParam int quantity) {
+//        List<Car> generatedCars = new ArrayList<>();
+//        Random random = new Random();
+//
+//        String[] brands = {"Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "BMW", "Mercedes-Benz", "Audi", "Volkswagen", "Hyundai"};
+//        String[] models = {"Sedan", "SUV", "Hatchback", "Convertible", "Coupe", "Wagon", "Pickup Truck", "Minivan", "Crossover", "Roadster"};
+//
+//        for (int i = 0; i < quantity; i++) {
+//            String brand = brands[random.nextInt(brands.length)];
+//            String model = models[random.nextInt(models.length)];
+//            String plate = generateRandomPlate(random);
+//            int year = random.nextInt(2000, 2024);
+//            double price = 50.0 + (random.nextDouble() * 450.0);
+//
+//            Car car = new Car(brand, model, plate, year, price);
+//            generatedCars.add(car);
+//            carRepository.save(car);
+//        }
+//
+//        return "cars";
+//    }
 
     private String generateRandomPlate(Random random) {
         StringBuilder plate = new StringBuilder();

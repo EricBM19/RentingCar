@@ -1,6 +1,10 @@
 package dev.app.rentingCar_boot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Entity
@@ -13,6 +17,14 @@ public class Car {
     private String model;
     private int carYear;
     private double price;
+
+    @OneToMany (mappedBy = "carFK", cascade = CascadeType.ALL)
+    private List<CarExtras> carExtras = new ArrayList<>();
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "insurrance_cia_id")
+    private InssuranceCia inssuranceCia;
 
     public String generateFourDigitUuid () {
         Random random = new Random();
@@ -83,6 +95,22 @@ public class Car {
 
     public int carAge() {
         return 2025 - this.carYear;
+    }
+
+    public List<CarExtras> getCarExtras() {
+        return carExtras;
+    }
+
+    public void setCarExtras(List<CarExtras> carExtras) {
+        this.carExtras = carExtras;
+    }
+
+    public InssuranceCia getInssuranceCia() {
+        return inssuranceCia;
+    }
+
+    public void setInssuranceCia(InssuranceCia inssuranceCia) {
+        this.inssuranceCia = inssuranceCia;
     }
 
     @Override
