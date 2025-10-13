@@ -7,6 +7,7 @@ public class Booking {
 
     @Id
     private String id;
+    private int bookingDate;
     private int qtyDays;
     private double totalAmount;
     private boolean isActive;
@@ -22,8 +23,9 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(String id, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
+    public Booking(String id, int bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
         this.id = id;
+        this.bookingDate = bookingDate;
         this.qtyDays = qtyDays;
         this.totalAmount = totalAmount;
         this.isActive = isActive;
@@ -37,6 +39,14 @@ public class Booking {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(int bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public int getQtyDays() {
@@ -83,6 +93,7 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id='" + id + '\'' +
+                ", bookingDate=" + bookingDate +
                 ", qtyDays=" + qtyDays +
                 ", totalAmount=" + totalAmount +
                 ", isActive=" + isActive +
