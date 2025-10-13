@@ -23,7 +23,7 @@ public class Car {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "insurrance_cia_id")
+    @JoinColumn(name = "INSURANCE_CIA_FK")
     private InssuranceCia inssuranceCia;
 
     public String generateFourDigitUuid () {

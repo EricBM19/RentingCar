@@ -5,6 +5,7 @@ import dev.app.rentingCar_boot.model.CarExtras;
 import dev.app.rentingCar_boot.model.InssuranceCia;
 import dev.app.rentingCar_boot.repository.CarExtrasRepository;
 import dev.app.rentingCar_boot.repository.CarRepository;
+import dev.app.rentingCar_boot.repository.InssuranceCiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +22,15 @@ public class PopulateCar {
     @Autowired
     private CarExtrasRepository carExtrasRepository;
 
+    @Autowired
+    private InssuranceCiaRepository inssuranceCiaRepository;
+
     public void populateCar(int quantity) {
         List<Car> cars = generateCars(quantity);
         List<CarExtras> carExtras = generateCarExtras(quantity);
+        List<InssuranceCia> inssuranceCias = generateInssuranceCia(quantity);
 
+        assignInsuranceToCar(inssuranceCias, cars);
         assignCarToCarExtras(cars,carExtras);
     }
 
@@ -34,6 +40,17 @@ public class PopulateCar {
 
         String [] insuranceNames = {"Allianz", "Mapfre", "AXA", "Zurich", "Liberty Seguros", "Generali", "Mutua Madrileña", "Reale Seguros", "Linea Directa", "Balumba"};
 
+        for (int  i =0; i < quantity; i++) {
+
+            String name = insuranceNames[random.nextInt(insuranceNames.length)];
+            String description = setInsuranceDescription(name);
+            int empluyesNum = 200 + random.nextInt(2000);
+            boolean isActive = random.nextBoolean();
+
+            InssuranceCia inssuranceCia = new InssuranceCia(name, description, empluyesNum, isActive);
+            generatedInssurances.add(inssuranceCia);
+            inssuranceCiaRepository.save(inssuranceCia);
+        }
         return generatedInssurances;
     }
 
@@ -165,7 +182,15 @@ public class PopulateCar {
 
     public void assignInsuranceToCar(List<InssuranceCia> inssuranceCias, List<Car> cars) {
 
-        // todo
+        for (Car car : cars) {
+
+            Random random = new Random();
+            InssuranceCia inssuranceCia = inssuranceCias.get(random.nextInt(inssuranceCias.size()));
+
+            car.setInssuranceCia(inssuranceCia);
+
+            carRepository.save(car);
+        }
     }
 
     public void assignCarToCarExtras(List<Car> cars, List<CarExtras> carExtrass) {

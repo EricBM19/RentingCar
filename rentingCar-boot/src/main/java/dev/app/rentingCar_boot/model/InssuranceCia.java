@@ -3,6 +3,7 @@ package dev.app.rentingCar_boot.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Random;
 
 @Entity
 public class InssuranceCia {
@@ -17,7 +18,21 @@ public class InssuranceCia {
     @OneToMany(mappedBy = "inssuranceCia", cascade = CascadeType.ALL)
     private List<Car> cars;
 
+    public String generateFourDigitUuid () {
+        Random random = new Random();
+        return "INS" + random.nextInt(9000);
+    }
+
     public InssuranceCia () {
+        this.id = generateFourDigitUuid();
+    }
+
+    public InssuranceCia(String name, String description, int qtyEmployee, boolean isActive) {
+        this.id = generateFourDigitUuid();
+        this.name = name;
+        this.description = description;
+        this.qtyEmployee = qtyEmployee;
+        this.isActive = isActive;
     }
 
     public String getId() {
