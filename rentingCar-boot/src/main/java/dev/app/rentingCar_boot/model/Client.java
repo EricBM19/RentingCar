@@ -3,6 +3,8 @@ package dev.app.rentingCar_boot.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Random;
+
 @Entity
 public class Client {
 
@@ -16,8 +18,13 @@ public class Client {
     private int age;
     private String password;
 
-    public Client(String id, String name, String lastName, String address, String email, boolean premium, int age, String password) {
-        this.id = id;
+    public String generateFourDigitUuid () {
+        Random random = new Random();
+        return "CLI" + (1000 + random.nextInt(9000));
+    }
+
+    public Client(String name, String lastName, String address, String email, boolean premium, int age, String password) {
+        this.id = generateFourDigitUuid();
         this.name = name;
         this.lastName = lastName;
         this.address = address;

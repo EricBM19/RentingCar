@@ -2,6 +2,8 @@ package dev.app.rentingCar_boot.model;
 
 import jakarta.persistence.*;
 
+import java.util.Random;
+
 @Entity
 public class Booking {
 
@@ -14,23 +16,28 @@ public class Booking {
 
     @JoinColumn(name = "CAR_FK")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Car car;
+    private Car carFK;
 
     @JoinColumn(name = "CLIENT_FK")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Client client;
+    private Client clientFK;
+
+    public String generateFourDigitUuid () {
+        Random random = new Random();
+        return "BOO" + (1000 + random.nextInt(9000));
+    }
 
     public Booking() {
     }
 
-    public Booking(String id, int bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
-        this.id = id;
+    public Booking(int bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
+        this.id = generateFourDigitUuid();
         this.bookingDate = bookingDate;
         this.qtyDays = qtyDays;
         this.totalAmount = totalAmount;
         this.isActive = isActive;
-        this.car = car;
-        this.client = client;
+        this.carFK = car;
+        this.clientFK = client;
     }
 
     public String getId() {
@@ -73,20 +80,20 @@ public class Booking {
         isActive = active;
     }
 
-    public Car getCar() {
-        return car;
+    public Car getCarFK() {
+        return carFK;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarFK(Car carFK) {
+        this.carFK = carFK;
     }
 
-    public Client getClient() {
-        return client;
+    public Client getClientFK() {
+        return clientFK;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientFK(Client clientFK) {
+        this.clientFK = clientFK;
     }
 
     @Override
@@ -97,8 +104,8 @@ public class Booking {
                 ", qtyDays=" + qtyDays +
                 ", totalAmount=" + totalAmount +
                 ", isActive=" + isActive +
-                ", car=" + car +
-                ", client=" + client +
+                ", car=" + carFK +
+                ", client=" + clientFK +
                 '}';
     }
 }

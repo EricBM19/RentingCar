@@ -25,7 +25,7 @@ public class BookingTests {
     @Test
     void bookingTest() {
 
-        Client client = new Client("0001","John", "Doe", "Fake Street 1234", "jdoe@gmail.com", false, 35, "1234" );
+        Client client = new Client("John", "Doe", "Fake Street 1234", "jdoe@gmail.com", false, 35, "1234" );
 
         clientRepository.save(client);
 
@@ -38,8 +38,8 @@ public class BookingTests {
         booking.setTotalAmount(160.55);
         booking.setActive(true);
 
-        booking.setClient(client);
-        booking.setCar(car);
+        booking.setClientFK(client);
+        booking.setCarFK(car);
 
         bookingRepository.save(booking);
 
