@@ -22,7 +22,7 @@ public class Car {
     private List<CarExtras> carExtras = new ArrayList<>();
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "INSURANCE_CIA_FK")
     private InssuranceCia inssuranceCia;
 

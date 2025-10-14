@@ -20,7 +20,7 @@ public class InssuranceCia {
 
     public String generateFourDigitUuid () {
         Random random = new Random();
-        return "INS" + random.nextInt(9000);
+        return "INS" + (1000 + random.nextInt(9000));
     }
 
     public InssuranceCia () {

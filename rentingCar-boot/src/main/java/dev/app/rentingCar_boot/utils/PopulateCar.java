@@ -68,7 +68,7 @@ public class PopulateCar {
             int year = random.nextInt(2000, 2024);
             double price = 50.0 + (random.nextDouble()* 450.0);
 
-            Car car = new Car(brand, model, plate, year, price);
+            Car car = new Car(plate,brand,model,year,price);
             generatedCars.add(car);
             carRepository.save(car);
         }
