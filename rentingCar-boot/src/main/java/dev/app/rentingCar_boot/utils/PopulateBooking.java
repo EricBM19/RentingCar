@@ -28,6 +28,10 @@ public class PopulateBooking {
     public void populateBooking(int qty) {
 
         List<Booking> bookings = genarateBooking(qty);
+        List<Car> cars = (List<Car>) carRepository.findAll();
+        List<Client> clients = (List<Client>) clientRepository.findAll();
+
+        assignCarAndClientToBooking(cars, clients, bookings);
     }
 
     public List<Booking> genarateBooking (int qty) {
