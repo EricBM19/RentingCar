@@ -1,4 +1,4 @@
-2025-10-17 09:02:59.112374+02:00 database: close
+2025-10-17 13:51:06.318487+02:00 database: close
 org.h2.message.DbException: IO Exception: "Closing"
 IO Exception: "Closing" [90028-232]
 	at org.h2.message.DbException.get(DbException.java:212)

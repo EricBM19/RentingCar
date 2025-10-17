@@ -1,9 +1,9 @@
 package dev.app.rentingCar_boot.model;
 
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Random;
 
 @Entity
 public class InssuranceCia {
@@ -18,17 +18,12 @@ public class InssuranceCia {
     @OneToMany(mappedBy = "inssuranceCia", cascade = CascadeType.ALL)
     private List<Car> cars;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        return "INS" + (1000 + random.nextInt(9000));
-    }
-
     public InssuranceCia () {
-        this.id = generateFourDigitUuid();
+        this.id = "INS" + GenerateUuid.generateUuid();
     }
 
     public InssuranceCia(String name, String description, int qtyEmployee, boolean isActive) {
-        this.id = generateFourDigitUuid();
+        this.id = "INS" + GenerateUuid.generateUuid();
         this.name = name;
         this.description = description;
         this.qtyEmployee = qtyEmployee;

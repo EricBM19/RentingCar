@@ -1,8 +1,7 @@
 package dev.app.rentingCar_boot.model;
 
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
-
-import java.util.Random;
 
 @Entity
 public class CarExtras {
@@ -18,22 +17,16 @@ public class CarExtras {
     @JoinColumn(name = "CAR_FK")
     private Car carFK;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        int uuid = 1000 + random.nextInt(9000);
-        return String.valueOf(uuid);
-    }
-
-    public CarExtras() {
-        this.id = generateFourDigitUuid();
-    }
-
     public CarExtras(String name, String description, double dailyPrice, boolean available) {
-        this.id = generateFourDigitUuid();
+        this.id = "CE" + GenerateUuid.generateUuid();
         this.name = name;
         this.description = description;
         this.dailyPrice = dailyPrice;
         this.available = available;
+    }
+
+    public CarExtras() {
+        this.id = "CE" + GenerateUuid.generateUuid();
     }
 
     public String getId() {

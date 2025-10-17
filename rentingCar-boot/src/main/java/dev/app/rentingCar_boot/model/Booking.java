@@ -1,8 +1,7 @@
 package dev.app.rentingCar_boot.model;
 
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
-
-import java.util.Random;
 
 @Entity
 public class Booking {
@@ -22,16 +21,12 @@ public class Booking {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Client clientFK;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        return "BOO" + (1000 + random.nextInt(9000));
-    }
-
     public Booking() {
+        this.id = "BOOK" + GenerateUuid.generateUuid();
     }
 
     public Booking(int bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
-        this.id = generateFourDigitUuid();
+        this.id = "BOOK" + GenerateUuid.generateUuid();
         this.bookingDate = bookingDate;
         this.qtyDays = qtyDays;
         this.totalAmount = totalAmount;

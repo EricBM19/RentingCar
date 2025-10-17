@@ -1,9 +1,9 @@
 package dev.app.rentingCar_boot.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import dev.app.rentingCar_boot.utils.GenerateUuid;
+import jakarta.persistence.*;
 
-import java.util.Random;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -12,29 +12,29 @@ public class Client {
     private String id;
     private String name;
     private String lastName;
-    private String address;
     private String email;
     private boolean premium;
     private int age;
     private String password;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        return "CLI" + (1000 + random.nextInt(9000));
+    @ElementCollection (fetch = FetchType.EAGER)
+    @CollectionTable(name = "CLIENT_ADDRESSES", joinColumns = @JoinColumn(name = "CLIENT_FK"))
+    @Column(name = "ADDRESS")
+    private List<String> addresses;
+
+    public Client() {
+        this.id = "CLI" + GenerateUuid.generateUuid();
     }
 
-    public Client(String name, String lastName, String address, String email, boolean premium, int age, String password) {
-        this.id = generateFourDigitUuid();
+    public Client(String name, String lastName, String email, boolean premium, int age, String password) {
+        this.id = "CLI" + GenerateUuid.generateUuid();
         this.name = name;
         this.lastName = lastName;
-        this.address = address;
         this.email = email;
         this.premium = premium;
         this.age = age;
         this.password = password;
     }
-
-    public Client() {}
 
     public String getId() {
         return id;
@@ -58,14 +58,6 @@ public class Client {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getEmail() {
@@ -100,17 +92,25 @@ public class Client {
         this.password = password;
     }
 
+    public List<String> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<String> addresses) {
+        this.addresses = addresses;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", premium=" + premium +
                 ", age=" + age +
                 ", password='" + password + '\'' +
+                ", addresses=" + addresses +
                 '}';
     }
 }

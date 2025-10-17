@@ -1,9 +1,9 @@
 package dev.app.rentingCar_boot.model;
 
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Random;
 
 @Entity
 public class DrivingCourse {
@@ -26,17 +26,13 @@ public class DrivingCourse {
     inverseJoinColumns = @JoinColumn(name = "CLIENT_ID"))
     private List<Client> clientFK;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        return "DCO" + (1000 + random.nextInt(9000));
-    }
-
     public DrivingCourse() {
+        this.id = "DCO" + GenerateUuid.generateUuid();
     }
 
     public DrivingCourse(String courseName, String courseDescription, String instructor, int durationHours, double price, String category, int maxStudents, boolean isActive, String location) {
 
-        this.id = generateFourDigitUuid();
+        this.id = "DCO" + GenerateUuid.generateUuid();
         this.courseName = courseName;
         this.courseDescription = courseDescription;
         this.instructor = instructor;

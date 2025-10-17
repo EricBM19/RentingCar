@@ -7,17 +7,16 @@ import dev.app.rentingCar_boot.repository.CarExtrasRepository;
 import dev.app.rentingCar_boot.repository.CarRepository;
 import dev.app.rentingCar_boot.repository.InssuranceCiaRepository;
 import dev.app.rentingCar_boot.service.CarService;
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import dev.app.rentingCar_boot.utils.PopulateCar;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-class RentingCarBootApplicationTests {
+class CarCarExtrasAndInsurancesTests {
 
     @Autowired
     CarRepository carRepository;

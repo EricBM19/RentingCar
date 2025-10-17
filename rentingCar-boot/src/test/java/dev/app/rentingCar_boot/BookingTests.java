@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest
 public class BookingTests {
 
@@ -29,7 +32,13 @@ public class BookingTests {
     @Test
     void bookingTest() {
 
-        Client client = new Client("John", "Doe", "Fake Street 1234", "jdoe@gmail.com", false, 35, "1234" );
+        List<String> addresses = new ArrayList<>();
+
+        addresses.add("89 Pinehill Drive, Rivertown, TX 75001");
+        addresses.add("67 Brookside Lane, Milltown, MA 02130");
+
+        Client client = new Client("John", "Doe", "jdoe@gmail.com", false, 35, "1234");
+        client.setAddresses(addresses);
 
         clientRepository.save(client);
 

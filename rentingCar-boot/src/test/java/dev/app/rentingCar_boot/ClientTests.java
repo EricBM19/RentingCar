@@ -10,9 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ClientTests {
 
     @Autowired
-    ClientRepository clientRepository;
-
-    @Autowired
     PopulateClient populateClient;
 
     @Test

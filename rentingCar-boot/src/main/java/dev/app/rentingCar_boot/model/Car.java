@@ -1,11 +1,11 @@
 package dev.app.rentingCar_boot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Entity
 public class Car {
@@ -26,18 +26,12 @@ public class Car {
     @JoinColumn(name = "INSURANCE_CIA_FK")
     private InssuranceCia inssuranceCia;
 
-    public String generateFourDigitUuid () {
-        Random random = new Random();
-        int uuid = 1000 + random.nextInt(9000);
-        return String.valueOf(uuid);
-    }
-
     public Car() {
-        this.id = generateFourDigitUuid();
+        this.id = "CR" + GenerateUuid.generateUuid();
     }
 
     public Car(String plate, String brand, String model, int carYear, double price) {
-        this.id = generateFourDigitUuid();
+        this.id = "CR" + GenerateUuid.generateUuid();
         this.plate = plate;
         this.brand = brand;
         this.model = model;
