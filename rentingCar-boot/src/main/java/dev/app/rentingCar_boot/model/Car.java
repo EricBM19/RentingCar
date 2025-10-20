@@ -5,6 +5,7 @@ import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,8 @@ public class Car {
     @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "INSURANCE_CIA_FK")
     private InssuranceCia inssuranceCia;
+
+    //private HashMap<Integer, Boolean> unavailableDates = new HashMap<Integer, Boolean>();
 
     public Car() {
         this.id = "CR" + GenerateUuid.generateUuid();
