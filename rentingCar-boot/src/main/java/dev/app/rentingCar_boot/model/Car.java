@@ -1,12 +1,14 @@
 package dev.app.rentingCar_boot.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.app.rentingCar_boot.utils.GenerateUnavailableDateHashMap;
 import dev.app.rentingCar_boot.utils.GenerateUuid;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Car {
@@ -27,7 +29,15 @@ public class Car {
     @JoinColumn(name = "INSURANCE_CIA_FK")
     private InssuranceCia inssuranceCia;
 
-    //private HashMap<Integer, Boolean> unavailableDates = new HashMap<Integer, Boolean>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "carFK", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Booking> bookings = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "car_available_dates", joinColumns = @JoinColumn(name = "car_id"))
+    @MapKeyColumn(name = "date_key")
+    @Column(name = "is_available")
+    private Map<Integer, Boolean> unavailableDates = new HashMap<Integer, Boolean>();
 
     public Car() {
         this.id = "CR" + GenerateUuid.generateUuid();
@@ -40,6 +50,7 @@ public class Car {
         this.model = model;
         this.carYear = carYear;
         this.price = price;
+        this.unavailableDates = GenerateUnavailableDateHashMap.generateHashMap();
     }
 
     public String getId() {
@@ -108,6 +119,22 @@ public class Car {
 
     public void setInssuranceCia(InssuranceCia inssuranceCia) {
         this.inssuranceCia = inssuranceCia;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public Map<Integer, Boolean> getUnavailableDates() {
+        return unavailableDates;
+    }
+
+    public void setUnavailableDates(Map<Integer, Boolean> unavailableDates) {
+        this.unavailableDates = unavailableDates;
     }
 
     @Override

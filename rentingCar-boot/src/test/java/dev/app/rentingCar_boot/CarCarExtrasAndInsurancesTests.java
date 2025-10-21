@@ -83,4 +83,11 @@ class CarCarExtrasAndInsurancesTests {
     void testPopulateCarMethods() {
         populateCar.populateCar(10);
     }
+
+    @Test
+    void checkCarAvailability() {
+
+        Car car = new Car("ABC123", "Test", "Model", 2023, 150.00);
+        carService.checkAvailability(car, 1767830400, 1768176000);
+    }
 }

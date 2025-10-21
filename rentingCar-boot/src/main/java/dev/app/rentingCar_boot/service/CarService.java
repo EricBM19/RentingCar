@@ -5,9 +5,7 @@ import dev.app.rentingCar_boot.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CarService {
@@ -42,5 +40,21 @@ public class CarService {
 
         if (foundCar.isEmpty()) System.out.println("Car not found");
         else System.out.println("Car found: " + foundCar);
+    }
+
+    public boolean checkAvailability(Car car, int initialDate, int finalDate) {
+
+        Map<Integer, Boolean> unavailableDates = car.getUnavailableDates();
+
+        for (int i = initialDate; i <= finalDate; i= i+86400) {
+
+            if (!unavailableDates.get(i)) {
+                System.out.println("Car not available");
+                return false;
+            }
+        }
+
+        System.out.println("Car ready to book :)");
+        return true;
     }
 }
