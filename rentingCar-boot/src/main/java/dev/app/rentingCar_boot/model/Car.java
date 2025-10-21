@@ -19,6 +19,9 @@ public class Car {
     private int carYear;
     private double price;
 
+    @ElementCollection (fetch = FetchType.EAGER)
+    private List<BookedDate> bookedDates = new ArrayList<>();
+
     @OneToMany (mappedBy = "carFK", cascade = CascadeType.ALL)
     private List<CarExtras> carExtras = new ArrayList<>();
 
@@ -108,6 +111,14 @@ public class Car {
 
     public void setInssuranceCia(InssuranceCia inssuranceCia) {
         this.inssuranceCia = inssuranceCia;
+    }
+
+    public List<BookedDate> getBookedDates() {
+        return bookedDates;
+    }
+
+    public void setBookedDates(List<BookedDate> bookedDates) {
+        this.bookedDates = bookedDates;
     }
 
     @Override
