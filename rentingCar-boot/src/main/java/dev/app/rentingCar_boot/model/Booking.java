@@ -8,7 +8,7 @@ public class Booking {
 
     @Id
     private String id;
-    private int bookingDate;
+    private long bookingDate;
     private int qtyDays;
     private double totalAmount;
     private boolean isActive;
@@ -25,7 +25,7 @@ public class Booking {
         this.id = "BOOK" + GenerateUuid.generateUuid();
     }
 
-    public Booking(int bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
+    public Booking(long bookingDate, int qtyDays, double totalAmount, boolean isActive, Car car, Client client) {
         this.id = "BOOK" + GenerateUuid.generateUuid();
         this.bookingDate = bookingDate;
         this.qtyDays = qtyDays;
@@ -43,11 +43,11 @@ public class Booking {
         this.id = id;
     }
 
-    public int getBookingDate() {
+    public long getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(int bookingDate) {
+    public void setBookingDate(long bookingDate) {
         this.bookingDate = bookingDate;
     }
 

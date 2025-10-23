@@ -9,6 +9,7 @@ import dev.app.rentingCar_boot.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,7 +42,7 @@ public class PopulateBooking {
 
         for (int i = 0; i < qty; i++) {
 
-            int bookingDate = random.nextInt(1514800800, 1760443927);
+            long bookingDate = generateRandomRealDate(random);
             int days = random.nextInt(1,20);
             double amount = random.nextDouble(50,600);
             boolean isActive = random.nextBoolean();
@@ -68,5 +69,14 @@ public class PopulateBooking {
 
             bookingRepository.save(booking);
         }
+    }
+
+    public long generateRandomRealDate (Random random) {
+
+        long initDate = LocalDate.of(2026,1,1).toEpochDay();
+
+        int randomDay = random.nextInt(0,366);
+
+        return LocalDate.ofEpochDay(initDate).plusDays(randomDay).toEpochDay();
     }
 }

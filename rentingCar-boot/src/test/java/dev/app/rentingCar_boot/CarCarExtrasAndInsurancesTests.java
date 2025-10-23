@@ -7,7 +7,6 @@ import dev.app.rentingCar_boot.repository.CarExtrasRepository;
 import dev.app.rentingCar_boot.repository.CarRepository;
 import dev.app.rentingCar_boot.repository.InssuranceCiaRepository;
 import dev.app.rentingCar_boot.service.CarService;
-import dev.app.rentingCar_boot.utils.GenerateUuid;
 import dev.app.rentingCar_boot.utils.PopulateCar;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,12 +81,5 @@ class CarCarExtrasAndInsurancesTests {
     @Test
     void testPopulateCarMethods() {
         populateCar.populateCar(10);
-    }
-
-    @Test
-    void checkCarAvailability() {
-
-        Car car = new Car("ABC123", "Test", "Model", 2023, 150.00);
-        carService.checkAvailability(car, 1767830400, 1768176000);
     }
 }

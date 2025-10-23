@@ -1,17 +1,21 @@
 package dev.app.rentingCar_boot.utils;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GenerateUnavailableDateHashMap {
 
-    public static Map<Integer, Boolean> generateHashMap() {
+    public static Map<Long, Boolean> generateHashMap() {
 
-        Map<Integer, Boolean> oneYearDatesHashMap = new HashMap<>();
+        LocalDate initialDate = LocalDate.of(2026, 1,1);
+        LocalDate finalDate = LocalDate.of(2026, 12, 31);
 
-        for (int i = 1767268800; i <= 1798718400; i = i+86400) {
+        Map<Long, Boolean> oneYearDatesHashMap = new HashMap<>();
 
-            oneYearDatesHashMap.put(i,true);
+        for (LocalDate date = initialDate; !date.isAfter(finalDate); date = date.plusDays(1)) {
+
+            oneYearDatesHashMap.put(date.toEpochDay(), true);
         }
 
         return oneYearDatesHashMap;

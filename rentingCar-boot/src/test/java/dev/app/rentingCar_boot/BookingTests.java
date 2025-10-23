@@ -6,6 +6,7 @@ import dev.app.rentingCar_boot.model.Client;
 import dev.app.rentingCar_boot.repository.BookingRepository;
 import dev.app.rentingCar_boot.repository.CarRepository;
 import dev.app.rentingCar_boot.repository.ClientRepository;
+import dev.app.rentingCar_boot.service.GenerateBookingService;
 import dev.app.rentingCar_boot.utils.PopulateBooking;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class BookingTests {
 
     @Autowired
     PopulateBooking populateBooking;
+
+    @Autowired
+    GenerateBookingService generateBookingService;
 
     @Test
     void bookingTest() {
@@ -62,5 +66,12 @@ public class BookingTests {
     @Test
     void populateBookingMethodTest() {
         populateBooking.populateBooking(10);
+    }
+
+    @Test
+    void checkCarAvailability() {
+
+        Car car = new Car("ABC123", "Test Car", "Model Car", 2022, 150.00);
+        generateBookingService.checkAvailability(car, 20632, 5);
     }
 }
