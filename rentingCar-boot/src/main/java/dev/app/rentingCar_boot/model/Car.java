@@ -37,7 +37,7 @@ public class Car {
     @CollectionTable(name = "car_available_dates", joinColumns = @JoinColumn(name = "car_id"))
     @MapKeyColumn(name = "date_key")
     @Column(name = "is_available")
-    private Map<Long, Boolean> unavailableDates = new HashMap<Long, Boolean>();
+    private Map<Long, Boolean> availableDates = new HashMap<Long, Boolean>();
 
     public Car() {
         this.id = "CR" + GenerateUuid.generateUuid();
@@ -50,7 +50,7 @@ public class Car {
         this.model = model;
         this.carYear = carYear;
         this.price = price;
-        this.unavailableDates = GenerateUnavailableDateHashMap.generateHashMap();
+        this.availableDates = GenerateUnavailableDateHashMap.generateHashMap();
     }
 
     public String getId() {
@@ -129,12 +129,12 @@ public class Car {
         this.bookings = bookings;
     }
 
-    public Map<Long, Boolean> getUnavailableDates() {
-        return unavailableDates;
+    public Map<Long, Boolean> getAvailableDates() {
+        return availableDates;
     }
 
-    public void setUnavailableDates(Map<Long, Boolean> unavailableDates) {
-        this.unavailableDates = unavailableDates;
+    public void setAvailableDates(Map<Long, Boolean> availableDates) {
+        this.availableDates = availableDates;
     }
 
     @Override

@@ -26,25 +26,20 @@ public class GenerateBookingService {
 
     public String generateBooking (Car car, long bookingDate, int qtyDays, Client client, int year) {
 
-        // 1. Check car, bookingDate, qtyDays and client are valid data.
-        // car, check if the car is on our ddbb
-        // booking date, if is in the correct format
-        // qty days it cannot be 0, negative or decimal
-        // client, check if our client exist on our ddbb
-        validateBookingData(car,bookingDate,qtyDays,client,year);
+        String validationResult = validateBookingData(car,bookingDate,qtyDays,client,year);
 
-        // 2. Call checkAvailability
-        checkAvailability(car, bookingDate, qtyDays);
+        if (!validationResult.equals("All values are valid.")) {
+            return validationResult;
+        }
 
-        // 3. Create method to calculate booking totalAmount
-        // call a method where we calculate the price for our booking
-        // price being, qtyDays * carPrice
-        double bookingTotalAmount = calculateBookingTotalAmout(qtyDays, car);
+        if(!checkAvailability(car, bookingDate, qtyDays)) {
+            return "Error: Car with plate " + car.getPlate() + " is not available for the requested days";
+        }
 
-        // 4. Create empty booking
+        double bookingTotalAmount = calculateBookingTotalAmount(qtyDays, car);
+
         Booking myBooking = new Booking();
 
-        // 5. Setting all booking values
         myBooking.setBookingDate(bookingDate);
         myBooking.setQtyDays(qtyDays);
         myBooking.setTotalAmount(bookingTotalAmount);
@@ -52,14 +47,15 @@ public class GenerateBookingService {
         myBooking.setCarFK(car);
         myBooking.setClientFK(client);
 
-        // 6. Call method createBooking which saves our booking at the ddbb todo
+        if(!createBooking(myBooking)) {
+            return "Error: could not create booking.";
+        }
 
-        // 7. Update car unavailableDays with the booked dates todo
-        // create and call a method where we update our car unavailableDays with the booked dates
+        if(!updateCarAvailableDays(car, bookingDate, qtyDays)) {
+            return "Error: failed to upload car availableDates";
+        }
 
-        // 8. return string with all checked and correct todo
-
-        return "TO DO";
+        return "Booking successfully created for car " + car.getPlate() + "!";
     }
 
     public String validateBookingData (Car car, long bookingDate, int qty, Client client, int year) {
@@ -92,7 +88,7 @@ public class GenerateBookingService {
             return false;
         }
 
-        if (!car.getUnavailableDates().containsKey(bookingDate)) {
+        if (!car.getAvailableDates().containsKey(bookingDate)) {
             return false;
         }
 
@@ -101,7 +97,7 @@ public class GenerateBookingService {
 
     public boolean checkAvailability(Car car, long initialDate, int qty) {
 
-        Map<Long, Boolean> unavailableDates = car.getUnavailableDates();
+        Map<Long, Boolean> unavailableDates = car.getAvailableDates();
 
         for (int i = 0; i < qty; i++) {
 
@@ -117,7 +113,7 @@ public class GenerateBookingService {
         return true;
     }
 
-    public double calculateBookingTotalAmout (int qtyDays, Car car) {
+    public double calculateBookingTotalAmount (int qtyDays, Car car) {
 
         double carPrice = car.getPrice();
         double totalPrice = carPrice * qtyDays;
@@ -133,6 +129,21 @@ public class GenerateBookingService {
             return false;
         }
 
+        return true;
+    }
+
+    public boolean updateCarAvailableDays(Car car, long bookingDate, int qty) {
+
+        if (carRepository.findById(car.getId()).isEmpty()) {
+            return false;
+        }
+
+        for (int i = 0; i < qty; i++) {
+            car.getAvailableDates().put(bookingDate, false);
+            bookingDate++;
+        }
+
+        carRepository.save(car);
         return true;
     }
 }

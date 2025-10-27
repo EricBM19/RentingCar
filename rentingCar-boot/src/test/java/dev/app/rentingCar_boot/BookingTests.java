@@ -71,7 +71,9 @@ public class BookingTests {
     @Test
     void checkCarAvailability() {
 
-        Car car = new Car("ABC123", "Test Car", "Model Car", 2022, 150.00);
-        generateBookingService.checkAvailability(car, 20632, 5);
+        Car car = carRepository.findById("CR8604").get();
+        Client client = clientRepository.findById("CLI4610").get();
+        String generatedResult = generateBookingService.generateBooking(car, 20486, 0, client, 2026);
+        System.out.println(generatedResult);
     }
 }
