@@ -82,33 +82,20 @@ public class BookingTests {
     @Test
     void findByIsActiveTrue() {
 
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
-        List<Booking> activeBookings = new ArrayList<>();
+        List<Booking> activeBookings = bookingRepository.findByIsActiveTrue();
 
-        for(Booking booking: bookings) {
-            if (booking.isActive()) {
-                activeBookings.add(booking);
-            }
-        }
-
-        for (int i = 0; i < activeBookings.size(); i++) {
-            System.out.println(activeBookings.get(i));
+        for (Booking booking: activeBookings) {
+            System.out.println("Booking: " + booking);
         }
     }
 
     @Test
     void findByIsActiveFalse() {
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
-        List<Booking> inactiveBookings = new ArrayList<>();
 
-        for(Booking booking: bookings) {
-            if (!booking.isActive()) {
-                inactiveBookings.add(booking);
-            }
-        }
+        List<Booking> inactiveBookings = bookingRepository.findByIsActiveFalse();
 
-        for (int i = 0; i < inactiveBookings.size(); i++) {
-            System.out.println(inactiveBookings.get(i));
+        for (Booking booking: inactiveBookings) {
+            System.out.println("Booking: " + booking);
         }
     }
 
@@ -139,46 +126,42 @@ public class BookingTests {
     @Test
     void findByBookingDateBetween() {
 
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
+        List<Booking> myBooking = bookingRepository.findBookingsWithinDateRange(20592,20767);
 
-        for (Booking booking: bookings) {
-            if (booking.getBookingDate() >= 20498 && booking.getBookingDate() <= 20628) {
-                System.out.println("Booking: " + booking);
-            }
+        for (Booking booking: myBooking) {
+            System.out.println("Booking: " + booking);
         }
     }
 
     @Test
     void findByCarAndIsActiveTrue () {
-        Car car = carRepository.findById("CR8182").get();
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
 
-        for (Booking booking: bookings) {
-            if (booking.getCarFK().getId().equals(car.getId()) && booking.isActive()) {
-                System.out.println("Booking :" + booking);
-            }
+        Car car = carRepository.findById("CR8182").get();
+
+        List<Booking> myBooking = bookingRepository.findByCarFKAndIsActiveTrue(car);
+
+        for (Booking booking: myBooking) {
+            System.out.println("Booking: " + booking);
         }
     }
 
     @Test
     void findByTotalAmountGreaterThan() {
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
 
-        for (Booking booking: bookings) {
-            if (booking.getTotalAmount() >= 400.00) {
-                System.out.println("Booking :" + booking);
-            }
+        List<Booking> myBooking = bookingRepository.findByTotalAmountGreaterThanEqual(360.00);
+
+        for (Booking booking: myBooking) {
+            System.out.println("Booking: " + booking);
         }
     }
 
     @Test
     void findByQtyDays () {
-        List<Booking> bookings = (List<Booking>) bookingRepository.findAll();
 
-        for (Booking booking: bookings) {
-            if (booking.getQtyDays() == 14) {
-                System.out.println("Booking :" + booking);
-            }
+        List<Booking> myBooking = bookingRepository.findByQtyDays(5);
+
+        for (Booking booking: myBooking) {
+            System.out.println("Booking: " + booking);
         }
     }
 
