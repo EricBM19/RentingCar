@@ -38,5 +38,4 @@ public interface BookingRepository extends CrudRepository <Booking, String> {
     List<Booking> findByClientFK(@Param("client") Client client);
 
     List<Booking> findTop10ByOrderByTotalAmountDesc();
-
 }
