@@ -1,0 +1,82 @@
+package dev.app.rentingcarvaadin.utils;
+
+import dev.app.rentingcarvaadin.model.Booking;
+import dev.app.rentingcarvaadin.model.Car;
+import dev.app.rentingcarvaadin.model.Client;
+import dev.app.rentingcarvaadin.repository.BookingRepository;
+import dev.app.rentingcarvaadin.repository.CarRepository;
+import dev.app.rentingcarvaadin.repository.ClientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+@Component
+public class PopulateBooking {
+
+    @Autowired
+    CarRepository carRepository;
+
+    @Autowired
+    ClientRepository clientRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
+
+    public void populateBooking(int qty) {
+
+        List<Booking> bookings = genarateBooking(qty);
+        List<Car> cars = (List<Car>) carRepository.findAll();
+        List<Client> clients = (List<Client>) clientRepository.findAll();
+
+        assignCarAndClientToBooking(cars, clients, bookings);
+    }
+
+    public List<Booking> genarateBooking (int qty) {
+
+        List<Booking> generatedBookings = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < qty; i++) {
+
+            long bookingDate = generateRandomRealDate(random);
+            int days = random.nextInt(1,20);
+            double amount = random.nextDouble(50,600);
+            boolean isActive = random.nextBoolean();
+
+            Booking booking = new Booking(bookingDate,days,amount,isActive,null,null);
+            generatedBookings.add(booking);
+            bookingRepository.save(booking);
+        }
+
+        return generatedBookings;
+    }
+
+    public void assignCarAndClientToBooking(List<Car> cars, List<Client> clients, List<Booking> bookings) {
+
+        Random random = new Random();
+
+        for (Booking booking : bookings) {
+
+            Car car = cars.get(random.nextInt(cars.size()));
+            Client client = clients.get(random.nextInt(clients.size()));
+
+            booking.setCarFK(car);
+            booking.setClientFK(client);
+
+            bookingRepository.save(booking);
+        }
+    }
+
+    public long generateRandomRealDate (Random random) {
+
+        long initDate = LocalDate.of(2026,1,1).toEpochDay();
+
+        int randomDay = random.nextInt(0,366);
+
+        return LocalDate.ofEpochDay(initDate).plusDays(randomDay).toEpochDay();
+    }
+}
